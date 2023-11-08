@@ -1,0 +1,19 @@
+
+{{>head title="Login"}}
+
+{{>nav}}
+
+ <div class="contenidologin">
+    <form id="formulario" action="/user/login" method="post">
+        <h2 class="title_contacto">Ingresa tus Datos</h2>
+       <label for="nombre">Nombre</label>
+       <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <label for="password">password </label>
+         <input type="password" name="password" id="password" placeholder="password">
+          <input type="submit" value="Enviar"></input>
+          <strong>No tenes cuenta?<a href="/registro">Registrate</a>
+          </strong>
+    </form>
+
+
+</div>
