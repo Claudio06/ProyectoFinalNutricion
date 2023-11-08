@@ -5,10 +5,11 @@ const{ check } = require('express-validator');
 const {
    getArticulo,
 agregaraArticulo,
-actualizarArticulo  } =  require('../controllers/articuloControllers.js');
+actualizarArticulo,
+ eliminarArticulo } =  require('../controllers/articuloControllers.js');
 
 router.get('/mostrar', getArticulo);
-
+router.get('agregar' , agregaraArticulo);
 router.post('/agregar',[
     check('titulo').isLength({min: 4}),
     check('descripcion').isLength({min: 8}),
@@ -16,5 +17,6 @@ router.post('/agregar',[
 ], agregaraArticulo);
 
 router.patch('/actualizar/:_id', actualizarArticulo);
+router.delete('/eliminar/:_id', eliminarArticulo);
 
 module.exports = router;

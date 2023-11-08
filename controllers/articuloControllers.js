@@ -8,12 +8,16 @@ const articuloSchema = require('../model/articuloSchema.js');
 const getArticulo = async (req, res) => {
    const {titulo, descripcion, precio} = req.body;
     const articulo = await articuloSchema.find({});
-    res.status(200).json({
-        articulo
-    })
+    
+    return res.render('articulo' , {articulo:articulo , layout: 'articulo'})
+    // res.status(200).json({
+    //     articulo
+    // })
 }
 
 const agregaraArticulo = async (req, res) => {
+
+
     
         const {titulo, descripcion , precio} = req.body;
         const errores = validationResult(req);
@@ -24,7 +28,7 @@ const agregaraArticulo = async (req, res) => {
             }
         
             const articulo = await articuloSchema.findOne({titulo}).exec()
-        // const user = db_personas.find((user) => user.guid === guid);
+    
           
         if (articulo) {
             res.status(404).send("El articulo ya se encuentra disponible");
@@ -37,25 +41,37 @@ const agregaraArticulo = async (req, res) => {
             
         
             await newarticulo.save();
-            res.status(200).json({data: newarticulo});
-            // res.render('/publicacion', { newpublicacion});
+            // res.status(200).json({data: newarticulo});
+            res.render('articulo' , {newarticulo:newarticulo , layout: 'articulo'})
+        
         }
 
-        const actualizarArticulo = async (req, res) => {
+    const actualizarArticulo = async (req, res) => {
     const { id } = req.params;
     const  dato  = req.body;
     const articulo =  await articuloSchema.findById(id).exec();
 
-    const actualizar = await Publicacion.findByIdAndUpdate(id, dato, {new: true});
-await actualizar.save();
+    const actualizar = await articuloSchema.updateOne(articulo ,dato);
 console.log({data: actualizar});
 // return res.render('actualizar' , {actualizar:actualizar,
 // layout: 'actualizar' })
 
-
+res.status(200).json({data: 'producto actualizado correctamente' });
 };
             
-             
+           
+const eliminarArticulo = async (req, res) => {
+ const { id } = req.params;
+    const articulo = await articuloSchema.findById(id).exec();
+    // if(!articulo){
+    //     return res.status(404).send("El articulo no existe");
+    // }
+    console.log(articulo._id);
+    await articuloSchema.deleteOne(articulo);
+
+    res.status(200).json({data: 'producto eliminado correctamente' });
+
+}
 
 
         
@@ -63,5 +79,6 @@ console.log({data: actualizar});
             getArticulo,
             agregaraArticulo,
             actualizarArticulo,
+            eliminarArticulo
 
 }

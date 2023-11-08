@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config();
+
 const app = require('./app.js');
 
 dotenv.config();
 const PORT = 3000
-
-// process.env.PORT || 9000;
+//  process.env.PORT || 3000;
 
 //Levantamos la conexión a la base de datos
 require('./conexion.js');

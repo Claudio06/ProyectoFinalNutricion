@@ -1,5 +1,5 @@
 const express = require('express');
-
+const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -9,7 +9,6 @@ const  cors = require('cors');
 // const publicacionSchema = require('./model/publicacionSchema.js');
 const app = express();
 // const PORT = process.env.PORT || 9000;
-
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -19,7 +18,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
-
+app.use(cookieParser());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
@@ -61,10 +60,18 @@ app.get('/sobremi', (req, res) => {
     res.render('sobremi' , { layout: 'sobremi' });
 })
 
-app.get('/articulo', (req, res) => {
-    res.status(200)
+app.get('/articulo/', (req, res) => {
+    res.render('articulo' , { layout: 'articulo' });
 });
-
+app.get('/agregar', (req, res) => {
+    res.render('agregar' , { layout: 'agregar' });
+})
+app.get('/actualizar', (req, res) => {
+    res.render('actualizar' , { layout: 'actualizar' });
+})
+app.get('/eliminar', (req, res) => {
+    res.render('eliminar' , { layout: 'eliminar' });
+})
 module.exports = app;
 
 

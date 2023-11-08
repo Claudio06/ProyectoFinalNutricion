@@ -1,10 +1,39 @@
+
+{{>head}}
+
 <nav class="m-principal">
    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHkAAAB5CAMAAAAqJH57AAAAe1BMVEX////7/fz0+vfR6tkAoCPj8uiSzqHd8OQAoiPs9/Ct27vU69vn9ez4/fsAmQAAlgDG5dB6xYyp2bag1a9uwoa64MZkvn4ApDAApjyz3b8prlM2sF5RuHOJy5qDypcsr1gYp0NHtWdfu3WV0KlvvnyExYw/sVlauGtEs2xjfSwkAAAESElEQVRoge2Za5uqKhiGEVHyGCCChzygrZr//wu3NlNZTTO2A9e19+X9ocioB+Q9gQCsrKysrKysrKys/Gfw7NRP3KquKzcnGC4lG9RNJtHmDJJZqyjDxnU9ITfFkdc9Y77PkiQZ3/38kJoWDkvJA+9xPMgyrdzJ+8lZoyZVpoXTza0wTBkZVhgjZlq5FDfjqPvw1BDStIHhqUIuzvMPZGFYGKRldG4GnX+5LJBrWpnRr0bk8quBk6x9tHbdyl9zm04YACWN2xdgn4K5mhqUK3fGnRmwYHyl3VSJyMwxLgyCMTmU1fSSjTbEvPCI104XFbpILiTsFPn1A3YzVJpPUnfCXpAoKbvUvHGdCE/C0KVCFdlB5IZNy8JJTWuGLQCLrzUOgwAbDx6ANTFqmxbFTV4aD5ITSBsLMq5lROhGBssJ8/h4sd1eiThZSNc7oGt8TqUH3E2/iHBYZNfb62RjxOjREnHDa9qJ1xzr0xtvF6iuu2wSnpLisyZwpH/TKTQwkH5a7IWX6MzL2263A9FBKOnkk7hUfvldZQ21mzufVjgYhecm2dwFL937GkdO/Ydf5++j+661XuVETqcWX72r29137cP7K2/RTEt6kl2aObLvu2KtKx3dxMm+O7dSWT12pjpztB1Pk4P7pYzF5rtsVeu83T6aRgg7TqMoSMpt+XCrR9i3V/8lfXZzB5N4u42L6on/EJ0L7ba3a2dhJ3rSdTy+MKj8Iw7XqJxkLyh7e43KOXohB2lVvvWqX4B7jQ4dxS9kv7D7vc982hesxtGqXL1Q9QRale0X9qZEp1cBUIjf+3zBvskib8DmH3FxvWeecL6NFZrroWQz06W9g+bK1yqbeR3T+RYxExvNsxyh/zSsj+d4loUM7OE7OaPOyY/6hQEsZhxoFkaeI3hZ8dusiTQhPJ67Zb84a6N/S/cJVJv8p+9Z9tO3b2HVMX8eKfDjlkMjaZY9MyKv0JssHv6fIkW+K3ig0pqZv8M+IpU/3POw/Fjg0MQWqKW3E0+leF7968RjTVy4Fx9LVWz+6cVVvG+3SFHXpeVWVstM+CqeV7zraL/gCejKyt9DnC29fucMmpQQBKdS2/JHj8WfOYEN/8nu8mXV7j6j5+6sTN9Szjiw9wAC6Ck8vHhDGnQigENguUOOgGN55FkARiBqo6Fg8YYruwBacPzFe3OmdYI5/gP3aUvDdj9s18T+gBMSqn0H+FENI0kY6IYR8A8CcrUvwA7/CXwfq337nnKkGMU06mAXOQoEAncAY5fUOdjbAufuuGG2T9V9UJKjB9pBmQbM5wTwt5Q5wJI6x+AIj86wJw9E2ESMuCSprIOzc0ZlwEsypm1Ys444Eg7KaZVXCVTvKAf9UEL3oFYpSD88d7SwvKSWT0Dd5MANyVjxkcPYlZW15exEkrgO/hBRxHfUeDhPlnpu9cCH+YeST1jo0e/KysrKysrKyv+LfwDLyjuEc+QrSQAAAABJRU5ErkJggg==" alt="" class="logo">
 <ul>
     <li class="item"><a id="link" href="/">Home</a></li>
-    <li class="item"><a id="link" href="/sobremi">Sobre mi</a></li>
-    <li class="item"><a id="link" href="#contacto">Contacto</a></li>
-    <li class="item"><a id="link" href="./login">Login</a></li>
-    <li class="item"><a id="link" href="/articulo">articulo</a></li>
+
+    <li class="item"><a id="link" href="/agregar">agregar</a></li>
+    <li class="item"><a id="link" href="/actualizar/">actulizar</a></li>
+    <li class="item"><a id="link" href="/eliminar/">Eliminar</a></li>
 </ul>   
 </nav>
+
+    {{#each articulo}}
+
+<div class="contenido_card">
+        <div class="card">
+            
+                <h5 class="card_title" >{{ this.titulo }}</h5>
+                <p  class="card_descripcion">{{ this.descripcion }}</p>
+                <p  class="card_descripcion">{{ this.precio }}</p>
+            
+               
+         </div>
+</div>
+                <form action="actualizar/{{_id}}">
+                    <button class="btn btn-warning">
+                        Actualizar Producto
+                    </button>
+                    <a href="/agregar" class="btn btn-primary">
+                    Subir Publicacion
+                </a>
+                    
+                </form>
+        
+
+    {{/each}}
+

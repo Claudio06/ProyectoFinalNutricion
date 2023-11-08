@@ -1,14 +1,14 @@
+he
 {{>head}}
+{{#each articulo}}
 
-{{>nav}}
-    {{#each publicacion}}
 <div class="contenido_card">
         <div class="card">
-            <img src="./Imagenes/plato.png" alt="producto para la venta" class="imagen">
             
                 <h5 class="card_title" >{{ this.titulo }}</h5>
-                <p  class="card_descripcion"></p>{{ this.descripcion }}</p>
-                
+                <p  class="card_descripcion">{{ this.descripcion }}</p>
+                <p  class="card_descripcion">{{ this.precio }}</p>
+            
                
          </div>
 </div>
@@ -16,7 +16,7 @@
                     <button class="btn btn-warning">
                         Actualizar Producto
                     </button>
-                    <a href="/subirpublicacion" class="btn btn-primary">
+                    <a href="/agregar" class="btn btn-primary">
                     Subir Publicacion
                 </a>
                     
@@ -24,4 +24,3 @@
         
 
     {{/each}}
-
