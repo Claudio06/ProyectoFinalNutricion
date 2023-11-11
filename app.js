@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const path = require('path');
 const dotenv = require('dotenv');
-dotenv.config();
+// dotenv.config();
 const  morgan = require('morgan');
 const  cors = require('cors');
 // const publicacionSchema = require('./model/publicacionSchema.js');
@@ -38,7 +38,8 @@ app.use('/registro', require('./routers/routerUser.js'));
 app.use('/user', require('./routers/routerUser.js'));
 app.use('/contacto', require('./routers/routersMensaje.js'));
 app.use('/login', require('./routers/routerUser.js'));
-app.use('/articulo', require('./routers/routerArticulo.js'));
+app.use('/',  require('./routers/routerArticulo.js'));
+//  app.use('/articulo/', require('./routers/routerArticulo.js'));
 // app.use('/registro', require('./routers/routerUser.js'));
 //  app.get('/index', (req, res) => {
 
@@ -60,16 +61,19 @@ app.get('/sobremi', (req, res) => {
     res.render('sobremi' , { layout: 'sobremi' });
 })
 
-app.get('/articulo/', (req, res) => {
+app.get('/articulo', (req, res) => {
     res.render('articulo' , { layout: 'articulo' });
 });
-app.get('/agregar', (req, res) => {
+ app.get('/mostrar', (req, res) => {
+    res.render('mostrar' , { layout: 'mostrar' });
+ })
+ app.get('/agregar', (req, res) => {
     res.render('agregar' , { layout: 'agregar' });
 })
-app.get('/actualizar', (req, res) => {
-    res.render('actualizar' , { layout: 'actualizar' });
+app.get('/actualizar/', (req, res) => {
+     res.render('actualizar' , { layout: 'actualizar' });
 })
-app.get('/eliminar', (req, res) => {
+app.get('articulo/eliminar', (req, res) => {
     res.render('eliminar' , { layout: 'eliminar' });
 })
 module.exports = app;
