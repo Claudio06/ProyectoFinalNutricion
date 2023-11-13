@@ -9,7 +9,7 @@ const  cors = require('cors');
 // const publicacionSchema = require('./model/publicacionSchema.js');
 const app = express();
 // const PORT = process.env.PORT || 9000;
-app.use(express.static('public'));
+// app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -23,7 +23,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, 'public')));
+ app.use(express.static(path.join(__dirname, 'public')));
  
  
 
@@ -70,11 +70,14 @@ app.get('/articulo', (req, res) => {
  app.get('/agregar', (req, res) => {
     res.render('agregar' , { layout: 'agregar' });
 })
-app.get('/actualizar/', (req, res) => {
-     res.render('actualizar' , { layout: 'actualizar' });
+app.get('/actualizar', (req, res) => {
+    res.render('articuloactualizado' , { layout: 'articuloactualizado' });
 })
-app.get('articulo/eliminar', (req, res) => {
+app.get('/eliminar', (req, res) => {
     res.render('eliminar' , { layout: 'eliminar' });
+})
+app.get('/actualizar', (req, res) => {
+    res.render('actualizar' , { layout: 'actualizar' });
 })
 module.exports = app;
 

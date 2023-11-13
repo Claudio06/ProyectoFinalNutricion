@@ -45,7 +45,7 @@ const agregaraArticulo = async (req, res) => {
     
         await newarticulo.save();
         // res.status(200).json({data: newarticulo});
-       return res.render('mostrar' ,  {newarticulo })
+       return res.render('mostrar' , { newarticulo : newarticulo , layout: 'mostrar'})
 
 
 
@@ -82,7 +82,10 @@ const agregaraArticulo = async (req, res) => {
         
 //         // return res.render('mostrar')
       }
+    const  getbuscaractualizar = async (req, res) => {
 
+      res.render('actualizar' ,  { layout: 'actualizar' });
+    }
       const buscaractualizar = async (req, res) => {
          const { id } = req.params;
 
@@ -106,7 +109,7 @@ const agregaraArticulo = async (req, res) => {
 
   const actualizar = await articuloSchema.updateOne(articulo ,dato);
 console.log({data: actualizar});
- return res.render('actualizar' , {actualizar});
+ return res.render('actualizar' , {actualizar , layout: 'actualizar'});
 
 //  res.status(200).json({data: 'producto actualizado correctamente' });
 }
@@ -121,10 +124,10 @@ const eliminarArticulo = async (req, res) => {
     // if(!articulo){
     //     return res.status(404).send("El articulo no existe");
     // }
-    console.log(articulo._id);
+    console.log(articulo);
     await articuloSchema.deleteOne(articulo);
-
-    res.status(200).json({data: 'producto eliminado correctamente' });
+res.render('eliminar', {articulo});
+    // res.status(200).json({data: 'producto eliminado correctamente' });
 
 }
 
@@ -132,7 +135,7 @@ const eliminarArticulo = async (req, res) => {
         
         module.exports = {
             getArticulo,
-            
+            getbuscaractualizar,
             getagregar,
             agregaraArticulo,
             buscaractualizar,

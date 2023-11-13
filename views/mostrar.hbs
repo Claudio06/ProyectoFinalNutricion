@@ -6,36 +6,45 @@
     <li class="item"><a id="link" href="/">Home</a></li>
 
     <li class="item"><a id="link" href="/agregar">agregar</a></li>
-    <li class="item"><a id="link" href="/actualizar/:id">actulizar</a></li>
-    <li class="item"><a id="link" href="/eliminar/">Eliminar</a></li>
+    <li class="item"><a id="link" href="/actualizar">actulizar</a></li>
+    <li class="item"><a id="link" href="/eliminar">Eliminar</a></li>
 </ul>   
 </nav>
-{{#each articulo}}
 
 <div class="contenido_card">
+{{#each articulo}}
         <div class="card">
             
                 <h5 class="card_title" >{{ this.titulo }}</h5>
                 <p  class="card_descripcion">{{ this.descripcion }}</p>
                 <p  class="card_descripcion">{{ this.precio }}</p>
             
-         <form action="/actualizar/:{{_id}}" method="post">
+         <form class="botones"  action="/actualizar/:{{_id}}" method="post">
                     <button class="btn btn-warning">
 
                         Actualizar Producto
                     </button>
          </form>
-               
-         </div>
-                    <a href="./agregar" class="btn btn-primary">
+         <form  class="botones"  action="../eliminar/{{ _id }}"  method="post">
+                    <button class="btn btn-danger">
+                            
+                            Eliminar Producto
+                    </button>
+
+                 </form>
+                    <a href="/agregar" class="btn btn-primary">
                     Subir Publicacion
                 </a>
+               
                     
-                </form>
-        
-</div>
                 
+         </div>
+        
+                
+    {{/each}}
+</div>
                 
         
 
-    {{/each}}
+{{>redes}}
+{{>footer}}

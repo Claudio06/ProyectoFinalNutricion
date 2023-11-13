@@ -1,8 +1,14 @@
-{{>head title="Actualizar Publicacion"}}
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
 
 {{>nav}}
 <div class="container">
-        <form action="/actualizar/{{ actualizar._id }}"  id="#formulario">
+        <form action="/actualizar/{{ actualizar._id }}"  id="formulario">
             
         <label for="titulo">Titulo</label>
 <input type="text" name="titulo" value="{{actualizar.titulo}}" id="titulo" placeholder="Titulo">
@@ -19,5 +25,6 @@
             </div>
 
         </form>
-        <h2 class="text-center">PRODUCTO ACTUALIZADO</h2><a href="../mostrar" class="btn btn-primary">Volver</a>
+        <h2 class="text">PRODUCTO ACTUALIZADO</h2><a href="../mostrar" class="btn btn-primary">Volver</a>
 </div>
+{{>footer}}

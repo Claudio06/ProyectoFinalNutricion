@@ -145,10 +145,10 @@ textarea:hover {
     width: 100%;
     object-fit: cover;
     object-position: center;
-  }
+  } 
   .contenido_card {
-    margin: auto;
-    width: 75%;
+    margin: 1em 0 0 0;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -157,27 +157,71 @@ textarea:hover {
     
   }
   .card {
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 300px;
     height: 400px;
+    border: 1px solid #a3b18a;
   }
-  .imagen {
-    width: 100%;
-  }
+  
   .card_title {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.5em;
+    padding: 0.5em;
   }
   .card_descripcion {
     font-weight: 300;
+    padding: 1em;
 
+  } .botones {
+    padding: 6px;
   }
   .btn {
     font-size: 1em;
   }
+  .btn-danger{
+    width: 130px;
+    height: 40px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #f30808;
+    color: #f30808;
+
+  }   .btn-danger:hover {
+    color: #fff;
+    background: #f30808;
+  }
+  .btn-warning{
+    width: 130px;
+    height: 40px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #080cf3;
+    color: #0876f3;
+
+  } 
+
   .btn-primary {
     text-decoration: none;
     color: #a3b18a;
@@ -207,4 +251,17 @@ textarea:hover {
   .redes_contacto #enlace {
     text-decoration: none;
     color: #6b9080;
+  }
+  .textoeliminado{
+    position: absolute ;
+    top:50%;
+    left: 40%;
+  }
+  
+
+
+  footer{
+    height: 6em;
+    background-color: #a3b18a ;
+    text-align: center;
   }

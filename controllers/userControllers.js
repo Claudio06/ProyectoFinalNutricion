@@ -48,10 +48,11 @@ const Login = async (req, res) => {
 
                 })
             } else{
- return res.status(200).json({
+//  return res.status(200).json({
 
-    data: 'Login correcto'
- });
+//     data: 'Login correcto'
+//  });
+return res.render('./mostrar', {layout: 'mostrar'});
 
             }
 
@@ -109,9 +110,9 @@ await usuario.save();
 // return res.json({
 //     data: 'Usuario creado correctamente'
 // });
-return res.sendfile(path.join(__dirname + './login.html'));
+// return res.sendfile(path.join(__dirname + './login.html'));
 
-
+return res.render('./login');
 }
 catch (error) {
     return res.status(500).json({
@@ -119,7 +120,71 @@ catch (error) {
     });
 }
 
+}
 
+const getAdmin = async (req, res) => {
 
 }
-module.exports = { getRegistro, registro , getUser , Login}
+const postAdmin = async (req, res) => {
+    const { nombre , password}  = req.body ;
+    const errores = validationResult(req)
+
+    if (!errores.isEmpty()) {
+        return res.json({
+            data: 'Errores en los datos'
+        });
+        }
+     
+
+       try
+       { 
+        
+        const usuario = await registroSchema.findOne({ nombre });
+    
+            console.log(`B. Usuario: ${usuario}`);
+    
+            if(!usuario){
+                return res.json( {
+                    data: 'El Email no existe'
+                });
+            }
+    
+            const passwrdcorrecto = bcrypt.compareSync(password, usuario.password);
+            
+            if(!passwrdcorrecto){
+
+              return   res.status(500).json({
+                    data: 'Password incorrecto'
+
+                })
+            } else{
+//  return res.status(200).json({
+
+//     data: 'Login correcto'
+//  });
+return res.render('mostrar');
+            }
+
+        
+      if(usuario.nombre == 'admin' && usuario.password == '123456' ){
+        return res.status(200).json({
+
+            data: 'te logueste como admin'
+         });
+      }
+       else{
+        return res.status(500).json({
+            data: 'No eres admin'
+        });
+      }  
+    
+           
+     } catch (error) {
+        return res.status(500).json({
+            data: 'Error interno del servidor'
+        }); 
+}  
+    
+}
+
+module.exports = { getRegistro, registro , getUser , Login , getAdmin , postAdmin}

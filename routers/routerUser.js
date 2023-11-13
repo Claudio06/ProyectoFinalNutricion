@@ -7,7 +7,9 @@ const{
     getRegistro,
     registro,
    getUser,
-    Login
+    Login,
+    postAdmin
+    // postLogin,
 } = require('../controllers/userControllers.js');
 
 
@@ -15,20 +17,23 @@ router.get('/login' , getUser);
 // router.get('/register' , getRegistro);    
 router.get('/registro', getRegistro); 
 
-router.post('/register', [
+router.post('/', [
  check('nombre', 'El nombre es obligatorio').not().isEmpty(),
  check('email', 'El email es obligatorio').isEmail(),
  check('password', 'El password debe tener al menos 6 caracteres').isLength({min: 6})  
 ] , registro)
-
+router.post('/register', getUser)
 router.post('/login', [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('password', 'El password debe tener al menos 6 caracteres').isLength({min: 6})
 ] , Login)
 
+router.post('/admin' , [ 
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('password', 'El password debe tener al menos 6 caracteres').isLength({min: 6})
 
-
-
+    ]
+    , postAdmin)
 
 
 
