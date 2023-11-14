@@ -1,23 +1,28 @@
 const express  =  require ( 'express' ) ;  
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator');
 // const userSchema = require('../model/userSchema.js');
 const path = require('path');
 const registroSchema = require('../model/registroSchema.js');
 // const User = require('../model/userSchema.js');
+const { generarToken , authToken } = require('../middleware/jwt.js');
+const claveSecreta = process.env.CLAVETOKEN;
 
 
 
 
 
 const getUser = async (req, res) => {
+    
     res.render('login');
 
 }
 const Login = async (req, res) => {
     
     const { nombre , password}  = req.body ;
-    const errores = validationResult(req)
+    
+    const errores = validationResult(req);
 
     if (!errores.isEmpty()) {
         return res.json({
@@ -25,8 +30,7 @@ const Login = async (req, res) => {
         });
         }
      
-
-       try
+try
        { 
         
         const usuario = await registroSchema.findOne({ nombre });
@@ -42,25 +46,23 @@ const Login = async (req, res) => {
             const passwrdcorrecto = bcrypt.compareSync(password, usuario.password);
             
             if(!passwrdcorrecto){
-
               return   res.status(500).json({
                     data: 'Password incorrecto'
 
                 })
-            } else{
+
+            } 
+            
+        else{
 //  return res.status(200).json({
 
 //     data: 'Login correcto'
 //  });
-return res.render('./mostrar', {layout: 'mostrar'});
+
+return res.render('logueado' ,{ style :'public\css\index.css'});
 
             }
-
-        
-        
-    
-           
-     } catch (error) {
+} catch (error) {
         return res.status(500).json({
             data: 'Error interno del servidor'
         }); 
@@ -127,13 +129,13 @@ const getAdmin = async (req, res) => {
 }
 const postAdmin = async (req, res) => {
     const { nombre , password}  = req.body ;
-    const errores = validationResult(req)
+    // const errores = validationResult(req)
 
-    if (!errores.isEmpty()) {
-        return res.json({
-            data: 'Errores en los datos'
-        });
-        }
+    // if (!errores.isEmpty()) {
+    //     return res.json({
+    //         data: 'Errores en los datos'
+    //     });
+    //     }
      
 
        try
@@ -152,35 +154,35 @@ const postAdmin = async (req, res) => {
             const passwrdcorrecto = bcrypt.compareSync(password, usuario.password);
             
             if(!passwrdcorrecto){
-
-              return   res.status(500).json({
+                
+                return   res.status(500).json({
                     data: 'Password incorrecto'
-
+                    
                 })
-            } else{
-//  return res.status(200).json({
-
-//     data: 'Login correcto'
-//  });
-return res.render('mostrar');
-            }
-
+                //  return res.status(200).json({
+                    
+                    //     data: 'Login correcto'
+                    //  });
+                    
+                    
+                }
+                if(usuario.nombre == "administrador" && usuario.password === "12345678" ){
+                     return res.status(200).json({
+             
+                         data: 'te logueste como admin'
+                      });
+                  }
+                  else{
+                    res.status(500).json({
+                       data: 'No eres admin'
+                   });
+                 }  
+                // return res.render('mostrar');
+                res.status(200).send('estas loguaado como admin')
+        }
         
-      if(usuario.nombre == 'admin' && usuario.password == '123456' ){
-        return res.status(200).json({
-
-            data: 'te logueste como admin'
-         });
-      }
-       else{
-        return res.status(500).json({
-            data: 'No eres admin'
-        });
-      }  
-    
-           
-     } catch (error) {
-        return res.status(500).json({
+        catch (error) {
+            return res.status(500).json({
             data: 'Error interno del servidor'
         }); 
 }  
