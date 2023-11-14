@@ -1,13 +1,13 @@
 const express  =  require ( 'express' ) ;  
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 const {validationResult} = require('express-validator');
 // const userSchema = require('../model/userSchema.js');
 const path = require('path');
 const registroSchema = require('../model/registroSchema.js');
 // const User = require('../model/userSchema.js');
-const { generarToken , authToken } = require('../middleware/jwt.js');
-const claveSecreta = process.env.CLAVETOKEN;
+// const { generarToken , authToken } = require('../middleware/jwt.js');
+
 
 
 
