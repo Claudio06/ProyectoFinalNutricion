@@ -12,7 +12,7 @@ const{
     // postLogin,
 } = require('../controllers/userControllers.js');
 
-
+const validar = require('../middleware/validar.js');
 router.get('/login' , getUser);
 // router.get('/register' , getRegistro);    
 router.get('/registro', getRegistro); 
@@ -28,12 +28,14 @@ router.post('/login', [
     check('password', 'El password debe tener al menos 6 caracteres').isLength({min: 6})
 ] , Login)
 
-router.post('/admin' , [ 
+router.post('/verificar' ,
+[ 
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('password', 'El password debe tener al menos 6 caracteres').isLength({min: 6})
 
     ]
-    , postAdmin)
+    , validar );
+
 
 
 

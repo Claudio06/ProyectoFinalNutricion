@@ -10,8 +10,8 @@ const  cors = require('cors');
 const app = express();
 // const PORT = process.env.PORT || 9000;
 // app.use(express.static('public'));
+const validar = require('./middleware/validar.js');
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -37,11 +37,12 @@ app.use('/cliente', require('./routers/routersMensaje.js'));
 app.use('/registro', require('./routers/routerUser.js'));
 app.use('/user', require('./routers/routerUser.js'));
 app.use('/contacto', require('./routers/routersMensaje.js'));
-app.use('/login', require('./routers/routerUser.js'));
+app.use('/login' , require('./routers/routerUser.js'));
 app.use('/',  require('./routers/routerArticulo.js'));
 //  app.use('/articulo/', require('./routers/routerArticulo.js'));
 // app.use('/registro', require('./routers/routerUser.js'));
 //  app.get('/index', (req, res) => {
+// app.use('/admin', require('./routers/routerUser.js'))
 
 
 //  });
@@ -76,9 +77,9 @@ app.get('/actualizar', (req, res) => {
 app.get('/eliminar', (req, res) => {
     res.render('eliminar' , { layout: 'eliminar' });
 })
-app.get('/actualizar', (req, res) => {
-    res.render('actualizar' , { layout: 'actualizar' });
-})
+// app.get('/actualizar', (req, res) => {
+//     res.render('actualizar' , { layout: 'actualizar' });
+// })
 module.exports = app;
 
 
